@@ -6,4 +6,4 @@ From  : Variant [[No Variations]] of Project [RuchnyyeChasy.PrjPcb]
 Files Generated   : 0
 Documents Printed : 0
 
-Finished Output Generation At 5:32:38 PM On 9/14/2017
+Finished Output Generation At 12:05:47 On 17/09/2017
