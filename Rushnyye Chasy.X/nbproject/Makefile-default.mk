@@ -77,7 +77,7 @@ ifneq ($(INFORMATION_MESSAGE), )
 endif
 	${MAKE}  -f nbproject/Makefile-default.mk dist/${CND_CONF}/${IMAGE_TYPE}/Rushnyye_Chasy.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
 
-MP_PROCESSOR_OPTION=32MX170F256B
+MP_PROCESSOR_OPTION=32MX110F016B
 MP_LINKER_FILE_OPTION=
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: assemble

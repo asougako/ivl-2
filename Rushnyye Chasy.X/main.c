@@ -46,37 +46,37 @@ void    main(void)
     int digit = 0;
     int hour = 0;
 
-    init();
-    ivl2_set_digit(0, 0);
-    ivl2_set_digit(1, 0);
-    ivl2_set_digit(2, 0);
-    ivl2_set_digit(3, 0);
-    main_loop
-    {
-        //unit
-        ivl2_set_digit(0, digit % 10);
-        ivl2_set_digit(1, digit / 10);
-        ivl2_set_digit(2, hour % 10);
-        ivl2_set_digit(3, hour / 10);
-        
-        //val++;
-        if (digit >= 59)
-        {
-            digit = 0;
-            if (hour >= 23)
-                hour = 0;
-            else
-                hour ++;
-        }
-        else
-            digit++;
-        
-        //delay 1s
-        count = 0;
-        while (count < 100)
-        {
-            micro_delay(1000);
-            count++;
-        }
-    }
+//    init();
+//    ivl2_set_digit(0, 0);
+//    ivl2_set_digit(1, 0);
+//    ivl2_set_digit(2, 0);
+//    ivl2_set_digit(3, 0);
+//    main_loop
+//    {
+//        //unit
+//        ivl2_set_digit(0, digit % 10);
+//        ivl2_set_digit(1, digit / 10);
+//        ivl2_set_digit(2, hour % 10);
+//        ivl2_set_digit(3, hour / 10);
+//
+//        //val++;
+//        if (digit >= 59)
+//        {
+//            digit = 0;
+//            if (hour >= 23)
+//                hour = 0;
+//            else
+//                hour ++;
+//        }
+//        else
+//            digit++;
+//
+//        //delay 1s
+//        count = 0;
+//        while (count < 100)
+//        {
+//            micro_delay(1000);
+//            count++;
+//        }
+//    }
 }
