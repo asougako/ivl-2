@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<project>                                  
+  <executable name="dist/default/production/Capacitive_touch.X.production.elf">                 
+    <memory name="program">                 
+      <units>bytes</units>                 
+      <length>17552</length>                 
+      <used>3212</used>                     
+      <free>14340</free>                     
+    </memory>                              
+    <memory name="data">              
+      <units>bytes</units>                 
+      <length>4096</length>                 
+      <used>20</used>                     
+      <free>4076</free>                     
+    </memory>                              
+  </executable>                            
+</project>                                 
