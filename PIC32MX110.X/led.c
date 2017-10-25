@@ -80,6 +80,7 @@ void    __attribute((interrupt(IPL4AUTO), vector(4)))change_led_color(void)
 
     if (led_index == 0)
     {
+<<<<<<< HEAD
         OC2RS += step;
         count++;
     }
@@ -106,12 +107,32 @@ void    __attribute((interrupt(IPL4AUTO), vector(4)))change_led_color(void)
     else if (led_index == 5)
     {
         OC4RS -= step;
+=======
+        OC1RS -= step;
+        OC2RS += step;
+        count++;
+    }
+    if (led_index == 1)
+    {
+        OC2RS -= step;
+        OC4RS += step;
+        count++;
+    }
+    if (led_index == 2)
+    {
+        OC4RS -= step;
+        OC1RS += step;
+>>>>>>> e7a9ebca2a057ed6cd91ad20ccdb3a79f145d8e5
         count++;
     }
     if (count >= max)
     {
         count = 0;
+<<<<<<< HEAD
         if (led_index < 5)
+=======
+        if (led_index < 2)
+>>>>>>> e7a9ebca2a057ed6cd91ad20ccdb3a79f145d8e5
         {
             led_index++;
         }

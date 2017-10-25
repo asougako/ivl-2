@@ -16,7 +16,10 @@
       <itemPath>main.c</itemPath>
       <itemPath>delay.c</itemPath>
       <itemPath>init.c</itemPath>
+<<<<<<< HEAD
       <itemPath>touch.c</itemPath>
+=======
+>>>>>>> e7a9ebca2a057ed6cd91ad20ccdb3a79f145d8e5
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -32,9 +35,15 @@
         <targetDevice>PIC32MX110F016B</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
+<<<<<<< HEAD
         <platformTool>PICkit3PlatformTool</platformTool>
         <languageToolchain>XC32</languageToolchain>
         <languageToolchainVersion>1.44</languageToolchainVersion>
+=======
+        <platformTool>ICD3PlatformTool</platformTool>
+        <languageToolchain>XC32</languageToolchain>
+        <languageToolchainVersion>1.34</languageToolchainVersion>
+>>>>>>> e7a9ebca2a057ed6cd91ad20ccdb3a79f145d8e5
         <platform>3</platform>
       </toolsSet>
       <compileType>
@@ -49,8 +58,11 @@
           <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
         </loading>
+<<<<<<< HEAD
         <subordinates>
         </subordinates>
+=======
+>>>>>>> e7a9ebca2a057ed6cd91ad20ccdb3a79f145d8e5
       </compileType>
       <makeCustomizationType>
         <makeCustomizationPreStepEnabled>false</makeCustomizationPreStepEnabled>
@@ -152,9 +164,12 @@
         <property key="save-temps" value="false"/>
         <property key="wpo-lto" value="false"/>
       </C32Global>
+<<<<<<< HEAD
       <ICD3PlatformTool>
         <property key="firmware.download.all" value="false"/>
       </ICD3PlatformTool>
+=======
+>>>>>>> e7a9ebca2a057ed6cd91ad20ccdb3a79f145d8e5
     </conf>
   </confs>
 </configurationDescriptor>

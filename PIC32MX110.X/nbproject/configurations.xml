@@ -34,9 +34,15 @@
         <targetDevice>PIC32MX110F016B</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
+<<<<<<< HEAD
         <platformTool>PICkit3PlatformTool</platformTool>
         <languageToolchain>XC32</languageToolchain>
         <languageToolchainVersion>1.44</languageToolchainVersion>
+=======
+        <platformTool>ICD3PlatformTool</platformTool>
+        <languageToolchain>XC32</languageToolchain>
+        <languageToolchainVersion>1.34</languageToolchainVersion>
+>>>>>>> e7a9ebca2a057ed6cd91ad20ccdb3a79f145d8e5
         <platform>3</platform>
       </toolsSet>
       <compileType>
@@ -51,8 +57,11 @@
           <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
         </loading>
+<<<<<<< HEAD
         <subordinates>
         </subordinates>
+=======
+>>>>>>> e7a9ebca2a057ed6cd91ad20ccdb3a79f145d8e5
       </compileType>
       <makeCustomizationType>
         <makeCustomizationPreStepEnabled>false</makeCustomizationPreStepEnabled>

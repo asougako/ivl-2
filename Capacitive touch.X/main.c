@@ -52,6 +52,7 @@ int g_min10 = 0;
 
 void    main(void)
 {
+<<<<<<< HEAD
     uint16_t    touch_val = 0;
     uint16_t     touch_limit = 840;
     
@@ -73,5 +74,59 @@ void    main(void)
             LATBCLR = 0x0020;
             touch_limit = 840;
         }
+=======
+    init();
+    init_delay();
+
+    //init red led on RB5
+    LATBSET = 0x0020;
+    micro_delay(500000);
+    LATBCLR = 0x0020;
+
+    /*init capacitive touch on RB15(AN9)*/
+    /*  CTMU*/
+    CTMUCON = 0;
+    CTMUCONbits.IRNG    = 0b00;         //Base current source range
+    CTMUCONbits.ITRIM   = 0b000000;     //Nominal current source trim
+    CTMUCONbits.CTTRIG  = 1;            //Auto trigger ADC @ second edge
+    /*AD1*/
+    TRISBbits.TRISB15   = 1;            //RB15 as inout
+    ANSELBbits.ANSB15   = 1;            //RB15 as analog pin
+    AD1CHSbits.CH0SA    = 0b1001;       //ADC1 positive input: chanel 9
+    AD1CHSbits.CH0NA    = 0;            //ADC1 negative input: Vrefl
+    AD1CON1bits.FORM    = 0b000;        //Data output: 16 bits integer
+    AD1CON1bits.SSRC    = 0b000;//0b011        //Conversion triger source: CTMU
+    AD1CON2bits.VCFG    = 0b000;        //Voltage ref source: AVdd, AVss
+    AD1CON2bits.CSCNA   = 0;            //Scan mode: off
+    AD1CON2bits.SMPI    = 0b0000;       //NB of conversions per interrupt: 1
+    AD1CON2bits.BUFM    = 0;            //Buffer fill mode: 16 * 1word buffer
+    AD1CON2bits.ALTS    = 0;            //MUX: A
+    AD1CON3bits.ADRC    = 0;            //Conversion clock: PBCLK
+    AD1CON3bits.SAMC    = 0b00000;      //Auto-sample time: Tad
+    AD1CON3bits.ADCS    = 0;            //Conversion clock
+    AD1CON1bits.ON      = 0;            //Enable ADC
+
+    main_loop
+    {
+        int ctmu_val = 0;
+    /*CTMU*/
+//        CTMUCONbits.ON          = 0;    //Disable CTMU
+//        CTMUCONbits.IDISSEN     = 1;    //Discharge circuit
+//        micro_delay(1000);              //Wait 1ms
+//        CTMUCONbits.IDISSEN     = 0;    //Stop discharge
+//        CTMUCONbits.EDG1STAT    = 0;    //Reset edge1 status
+//        CTMUCONbits.EDG2STAT    = 0;    //Reset edge2 status
+//        CTMUCONbits.EDGEN       = 1;    //Unblock edge inputs
+//        CTMUCONbits.ON          = 1;    //Enable CTMU
+
+        /*ADC*/
+        AD1CON1bits.ON          = 1;    //Enable ADC
+        AD1CON1bits.SAMP        = 1;    //Start sampling
+        micro_delay(10);            //
+        AD1CON1bits.SAMP        = 0;    //Stop sampling, start conversion
+        while (!AD1CON1bits.DONE);
+        ctmu_val = (ADC1BUF0 * 330) / 1023;
+        micro_delay(1);
+>>>>>>> e7a9ebca2a057ed6cd91ad20ccdb3a79f145d8e5
     }
 }
