@@ -10,7 +10,7 @@
 void    init_led()
 {
     /*Peripheral pin select*/
-    RPB6R       = 0x05;         // Pin B6 mapped to Output Compare 3
+    RPB6R       = 0x05;         // Pin B6 mapped to Output Compare 4
     RPB7R       = 0x05;         // Pin B7 mapped to Output Compare 1
     RPB8R       = 0x05;         // Pin B8 mapped to Output Compare 2
 

@@ -41,7 +41,7 @@ void    init_touch(void)
     T4CONbits.ON = 1;                   // Enable Timer
 }
 
-#define n 3
+#define n 6
 int     get_touch(int channel)
 {
     int ctmu_val = 0;
@@ -59,7 +59,7 @@ int     get_touch(int channel)
         CTMUCONbits.EDG1STAT    = 1;        //Start charging
     //    micro_delay(1);
         TMR4 = 0;
-        while(TMR4 < 10);
+        while(TMR4 < 9);
         AD1CON1bits.SAMP        = 0;        //Stop sampling, start conversion
         CTMUCONbits.EDG1STAT    = 0;        //Reset edge2 status
         while (!AD1CON1bits.DONE);
