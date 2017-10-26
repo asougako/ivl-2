@@ -18,7 +18,7 @@ void    init_touch(void)
     CTMUCONbits.ITRIM   = 0b000000;     //Nominal current source trim
     CTMUCONbits.CTTRIG  = 0;            //Auto trigger ADC @ second edge
     /*AD1*/
-    AD1CHSbits.CH0SA    = 9;       //ADC1 positive input: chanel 9
+    AD1CHSbits.CH0SA    = 0;            //ADC1 positive input: chanel 0
     AD1CHSbits.CH0NA    = 0;            //ADC1 negative input: Vrefl
     AD1CON1bits.FORM    = 0b000;        //Data output: 16 bits integer
     AD1CON1bits.SSRC    = 0b000;        //Conversion triger source: CLR SAMP bit
@@ -39,32 +39,29 @@ void    init_touch(void)
     T3CONbits.ON = 1;               // Enable Timer
 }
 
-#define n 30
-int     get_touch(void)
+#define n 10
+int     get_touch(int channel)
 {
     int ctmu_val = 0;
     int count = 0;
-    /*CTMU*/
-//        CTMUCONbits.EDG1STAT    = 0;    //Reset edge1 status
-//        CTMUCONbits.EDG2STAT    = 0;    //Reset edge2 status
-//        CTMUCONbits.EDGEN       = 1;    //Unblock edge inputs
 
-    CTMUCONbits.ON          = 1;    //Enable CTMU
+    AD1CHSbits.CH0SA            = channel;  //ADC1 positive input: chanel 0
+    CTMUCONbits.ON              = 1;        //Enable CTMU
     while (count < n)
     {
-        micro_delay(1000);              //1ms ctmu warm up
-        AD1CON1bits.SAMP        = 1;    //Start sampling
-        CTMUCONbits.IDISSEN     = 1;    //Discharge circuit
-        micro_delay(1000);              //Wait 1ms
-        CTMUCONbits.IDISSEN     = 0;    //Stop discharge
-        CTMUCONbits.EDG1STAT    = 1;    //Start charging
+        micro_delay(1000);                  //1ms ctmu warm up
+        AD1CON1bits.SAMP        = 1;        //Start sampling
+        CTMUCONbits.IDISSEN     = 1;        //Discharge circuit
+        micro_delay(1000);                  //Wait 1ms
+        CTMUCONbits.IDISSEN     = 0;        //Stop discharge
+        CTMUCONbits.EDG1STAT    = 1;        //Start charging
     //    micro_delay(1);
         TMR3 = 0;
-        while(TMR3 < 3000);
-        AD1CON1bits.SAMP        = 0;    //Stop sampling, start conversion
-        CTMUCONbits.EDG1STAT    = 0;    //Reset edge2 status
-        while (!AD1CON1bits.DONE);
-        AD1CON1bits.DONE        = 0;    //CLR done flag
+        while(TMR3 < 3000);                 //Charging time
+        AD1CON1bits.SAMP        = 0;        //Stop sampling, start conversion
+        CTMUCONbits.EDG1STAT    = 0;        //Reset edge2 status
+        while (!AD1CON1bits.DONE);          //Wait ADC convesion
+        AD1CON1bits.DONE        = 0;        //CLR done flag
         ctmu_val += ADC1BUF0;
         count++;
     }

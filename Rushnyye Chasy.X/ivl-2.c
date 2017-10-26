@@ -100,11 +100,6 @@ void    ivl2_print(int index)
     return;
 }
 
-void    ivl2_print_dots(void)
-{
-
-}
-
 void    __attribute__((interrupt(IPL5AUTO), vector(8)))refresh_digit(void)
 {
     IFS0bits.T2IF = 0;

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<project>                                  
+  <executable name="dist/default/production/IVL-2_32MX110.X.production.elf">                 
+    <memory name="program">                 
+      <units>bytes</units>                 
+      <length>17552</length>                 
+      <used>11040</used>                     
+      <free>6512</free>                     
+    </memory>                              
+    <memory name="data">              
+      <units>bytes</units>                 
+      <length>4096</length>                 
+      <used>76</used>                     
+      <free>4020</free>                     
+    </memory>                              
+  </executable>                            
+</project>                                 

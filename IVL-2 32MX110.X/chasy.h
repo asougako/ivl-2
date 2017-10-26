@@ -22,6 +22,12 @@
 #define uint32_t    unsigned int
 #define uint64_t    unsigned long
 
+int cycle_mode;
+int cycle_speed;
+int red_duty;
+int green_duty;
+int blue_duty;
+
 //GLOBALS
 int g_sec01;
 int g_sec10;
@@ -34,7 +40,7 @@ void    init_delay(void);
 void    init_ivl2(void);
 void    init_clock();
 void    micro_delay(int delay);
-void    led_set(short red, short green, short blue);
+void    led_set(void);
 void    ivl2_set_digit(int index, int val);
 
 

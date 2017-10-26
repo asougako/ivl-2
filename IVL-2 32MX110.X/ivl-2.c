@@ -15,16 +15,24 @@ uint8_t segment[4] = {0,0,0,0};             //Digit segments patern storage
 uint8_t dots = 0;                           //Dots on/off status
 uint8_t current_index = 0;                  //Store currently displayed digit
 //Segments patterns
-uint8_t num_to_seg[10] = {  0b11111110,     // 0
+//34
+
+uint8_t num_to_seg[16] = {  0b11111110,     // 0
                             0b01010000,     // 1
                             0b10110101,     // 2
                             0b01110101,     // 3
                             0b01011001,     // 4
                             0b01101101,     // 5
-                            0b11101111,     // 6
+                            0b11101101,     // 6
                             0b01010100,     // 7
                             0b11111101,     // 8
-                            0b01111101};    // 9
+                            0b01111101,     // 9
+                            0b00000000,     // 10 blank
+                            0b10101110,     // 11 c
+                            0b01101101,     // 12 s
+                            0b10000001,     // 13 r
+                            0b11111010,     // 14 v
+                            0b11101011};    // 15 b
 //Grids pins value
 uint8_t grid[4] = {         0b00000001,     //grid1
                             0b00000010,     //grid2
@@ -109,4 +117,30 @@ void    __attribute__((interrupt(IPL5AUTO), vector(12)))refresh_digit(void)
     if (current_index >= nb_grids)
         current_index = 0;
     return;
+}
+
+void    blink_min(void)
+{
+    int count = 3;
+    while (count > 0)
+    {
+        ivl2_set_digit(3, 10);
+        micro_delay(100000);
+        ivl2_set_digit(3, RTCTIMEbits.MIN01);
+        micro_delay(100000);
+        count--;
+    }
+}
+
+void    blink_hr(void)
+{
+    int count = 3;
+    while (count > 0)
+    {
+        ivl2_set_digit(1, 10);
+        micro_delay(100000);
+        ivl2_set_digit(1, RTCTIMEbits.HR01);
+        micro_delay(100000);
+        count--;
+    }    
 }

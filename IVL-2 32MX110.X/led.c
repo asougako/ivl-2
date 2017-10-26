@@ -61,84 +61,70 @@ void    init_led()
     return;
 }
 
-void    led_set(short red, short green, short blue)
+void    led_set(void)
 {
-    OC1RS = green;
-    OC2RS = blue;
-    OC4RS = red;
+    OC1RS = green_duty;
+    OC2RS = blue_duty;
+    OC4RS = red_duty;
     return;
 }
 
 unsigned int    led_index = 0;
-unsigned int    count = 0;
-unsigned int    step = 100;     //max = 10000 / step
-unsigned int    max = 100;
 void    __attribute((interrupt(IPL4AUTO), vector(4)))change_led_color(void)
 {
     IFS0bits.T1IF = 0;      //CLR TMR interrupt flag
     /*change color*/
 
-    if (led_index == 0)
+    switch (led_index)
     {
-<<<<<<< HEAD
-        OC2RS += step;
-        count++;
+        case 0:
+            blue_duty += cycle_speed * 10;
+            if (blue_duty > 10000)
+            {
+                blue_duty = 10000;
+                led_index++;
+            }
+            break;
+        case 1:
+            green_duty -= cycle_speed * 10;
+            if (green_duty < 0)
+            {
+                green_duty = 0;
+                led_index++;
+            }
+            break;
+        case 2:
+            red_duty += cycle_speed * 10;
+            if (red_duty > 10000)
+            {
+                red_duty = 10000;
+                led_index++;
+            }
+            break;
+        case 3:
+            blue_duty -= cycle_speed * 10;
+            if (blue_duty < 0)
+            {
+                blue_duty = 0;
+                led_index++;
+            }
+            break;
+        case 4:
+            green_duty += cycle_speed * 10;
+            if (green_duty > 10000)
+            {
+                green_duty = 10000;
+                led_index++;
+            }
+            break;
+        case 5:
+            red_duty -= cycle_speed * 10;
+            if (red_duty < 0)
+            {
+                red_duty = 0;
+                led_index = 0;
+            }
+            break;
     }
-    else if (led_index == 1)
-    {
-        OC1RS -= step;
-        count++;
-    }
-    else if (led_index == 2)
-    {
-        OC4RS += step;
-        count++;
-    }
-    else if (led_index == 3)
-    {
-        OC2RS -= step;
-        count++;
-    }
-    else if (led_index == 4)
-    {
-        OC1RS += step;
-        count++;
-    }
-    else if (led_index == 5)
-    {
-        OC4RS -= step;
-=======
-        OC1RS -= step;
-        OC2RS += step;
-        count++;
-    }
-    if (led_index == 1)
-    {
-        OC2RS -= step;
-        OC4RS += step;
-        count++;
-    }
-    if (led_index == 2)
-    {
-        OC4RS -= step;
-        OC1RS += step;
->>>>>>> e7a9ebca2a057ed6cd91ad20ccdb3a79f145d8e5
-        count++;
-    }
-    if (count >= max)
-    {
-        count = 0;
-<<<<<<< HEAD
-        if (led_index < 5)
-=======
-        if (led_index < 2)
->>>>>>> e7a9ebca2a057ed6cd91ad20ccdb3a79f145d8e5
-        {
-            led_index++;
-        }
-        else
-        {
-            led_index = 0;
-        }
-    }
+    led_set();
 }
